@@ -1,0 +1,65 @@
+<!-- always add apps to the settings.py --> 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>{{page}}</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="/contact">
+        Contact
+    </a>
+    |
+    <a href="/about">
+        About
+    </a>
+
+    <h1>This is created inside templates folder </h1>
+    {{peoples}}
+    <table class= "container" style="width:50%">
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote</th>
+        </tr>
+        {%for people in peoples%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+            <td {% if people.age >= 18%} style="background-color:red" {%endif%}>
+                {% if people.age >= 18 %}
+                Can Vote
+                {% else %}
+                Cannot Vote
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if "carrot" in vege %}
+    yes Available
+    {% else %}
+    Not Available
+    {% endif %}
+
+    <p>
+        {{text|truncatechars:80}}
+    </p>
+</body>
+</html>
